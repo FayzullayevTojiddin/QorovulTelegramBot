@@ -54,3 +54,7 @@ def documentation_message(link):
     )
 
 url_documentation = "https://youtube.com/en_documentation"
+
+unknown_command_group_message = (
+    "❓ *You sent an unknown command.*"
+)

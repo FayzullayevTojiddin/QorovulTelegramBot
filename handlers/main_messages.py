@@ -14,7 +14,8 @@ async def getstart(message: types.Message, state: FSMContext):
         await state.set_state(newState)
         await message.answer(
             text=text,
-            reply_markup=keyboard
+            reply_markup=keyboard,
+            reply_to_message_id=message.message_id
         )
     except Exception as error:
         print(error)
@@ -30,7 +31,7 @@ async def getCallbackResponse(callback: types.CallbackQuery, state: FSMContext):
             chat_id=callback.from_user.id,
             message_id=callback.message.message_id,
             text=text,
-            reply_markup=keyboard
+            reply_markup=keyboard,
         )
         await state.set_state(newState)
     except Exception as error:

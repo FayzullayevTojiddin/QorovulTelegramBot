@@ -54,3 +54,7 @@ def documentation_message(link):
     )
 
 url_documentation = "https://youtube.com/uz_documentation"
+
+unknown_command_group_message = (
+    "❓ *Nomaʼlum buyruq yubordingiz.*"
+)

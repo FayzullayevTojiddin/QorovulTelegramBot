@@ -31,16 +31,18 @@ def getLangsKeyboard(lang):
     keyboard.adjust(2)
     return keyboard.as_markup()
 
-def getActionsKeyboard(usernameBot, langUser):
+def getActionsKeyboard(usernameBot, langUser, isGroup=False):
     keyboard = InlineKeyboardBuilder()
     buttons = getActionsList(usernameBot, langUser)
     for button in buttons:
         keyboard.button(text=button["text"], url=button["url"])
     
-    keyboard.button(
-        text=Locales.getMessage(langUser, 'main_menu_button'),
-        callback_data='main'
-    )
+    if not isGroup:
+        keyboard.button(
+            text=Locales.getMessage(langUser, 'main_menu_button'),
+            callback_data='main'
+        )
+        
     keyboard.adjust(1)
     return keyboard.as_markup()
 
