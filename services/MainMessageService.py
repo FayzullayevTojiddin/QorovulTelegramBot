@@ -2,6 +2,7 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 from locales import Locales
 from models.user import User
+from helpers.getTypeChats import isPrivate
 
 from keyboards.inline_keyboards import (
     getMainKeyboard, getLangsKeyboard
@@ -11,7 +12,7 @@ class MainMessageService():
 
     @classmethod
     async def getResponse(cls, message: Message, state: FSMContext):
-        if message.chat.type == 'private':
+        if isPrivate(message):
             return await cls.getResponseInPrivate(message, state)
 
     @classmethod
@@ -27,7 +28,7 @@ class MainMessageService():
             newState = inState
         elif command == "/lang":
             text = Locales.getMessage(langUser, 'edit_lang_message')
-            keyboard = getLangsKeyboard()
+            keyboard = getLangsKeyboard(langUser)
             newState = inState
 
         return text, keyboard, newState

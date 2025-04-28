@@ -24,3 +24,13 @@ class User(BaseModel):
         except Exception as error:
             print(error)
             return False
+        
+    @classmethod
+    def setLangByTelegramId(cls, TelegramId, newLang):
+        try:
+            user = cls.getUserByTelegramId(TelegramId)
+            user.lang = newLang
+            return user.save()
+        except Exception as error:
+            print(error)
+            return False
